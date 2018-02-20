@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+
+set -euo pipefail
+
+IMAGE_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+cd "$IMAGE_DIR"
+
+source ../helpers
+
+unzip_instant_oraclient() {
+
+  if [[ ! -d "$IMAGE_DIR"/lib/oracle/instantclient_12_2 ]]; then
+    unzip -qq instantclient-basic-linux.x64-12.2.0.1.0.zip -d "$IMAGE_DIR"/lib/oracle
+    unzip -qq instantclient-sdk-linux.x64-12.2.0.1.0.zip -d "$IMAGE_DIR"/lib/oracle
+
+    cd "$IMAGE_DIR"/lib/oracle/instantclient_12_2
+    ln libclntsh.so.12.1 libclntsh.so
+    ln libclntshcore.so.12.1 libclntshcore.so
+    
+    cd "$IMAGE_DIR"
+  fi
+}
+
+
+info "$IMAGE"
+
+unzip_instant_oraclient
+build_image

@@ -1,0 +1,16 @@
+#!/user/bin/env bash
+
+#
+# Log specified message to stdout.
+#
+info () {
+ echo "[$(date +'%Y-%m-%dT %H:%M:%S%zZ')] ($(basename "$0")): $*" >&2
+}
+
+IMAGE=$(basename "$PWD")
+
+build_image () {
+
+  docker build "$@" -t "$IMAGE" -f Dockerfile .
+  
+}
