@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+set -euo pipefail
+
+IMAGE_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+cd "$IMAGE_DIR"
+
+source ../helpers
+
+info "$IMAGE"
+
+build_image
