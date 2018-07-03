@@ -20,3 +20,5 @@ RUN apk add --no-cache bash unzip curl go make git musl-dev && \
  make build && \
  mkdir -p /root/.terraform.d/plugins && \   
  cp $GOPATH/bin/terraform-provider-aws /root/.terraform.d/plugins/terraform-provider-aws_v1.25.0_x4
+
+ENTRYPOINT ["terraform"]
