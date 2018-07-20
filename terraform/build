@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+set -euo pipefail
+
+IMAGE_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+cd "$IMAGE_DIR"
+
+source ../helpers
+source images.env
+
+info "$IMAGE"
+
+build_image --build-arg tf_version=$TAGS
