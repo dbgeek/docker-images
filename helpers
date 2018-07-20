@@ -11,6 +11,6 @@ IMAGE=$(basename "$PWD")
 
 build_image () {
 
-  docker build "$@" -t "$IMAGE" -f Dockerfile .
+  docker build "$@" -t "$IMAGE:$TAGS" -f Dockerfile .
   
 }
